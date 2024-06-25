@@ -1,0 +1,16 @@
+{
+  "name": "@fluentui/workspace-plugin",
+  "version": "0.0.0",
+  "private": true,
+  "type": "commonjs",
+  "generators": "./generators.json",
+  "scripts": {
+    "test": "nx run @fluentui/workspace-plugin:test",
+    "type-check": "node  ./scripts/type-check.mjs",
+    "lint": "eslint --ext .ts,.js,.json ."
+  },
+  "dependencies": {
+    "@nx/devkit": "^18.3.5"
+  },
+  "devDependencies": {}
+}

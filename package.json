@@ -1,0 +1,35 @@
+{
+	"name": "gh-txt-generate",
+	"version": "0.0.1",
+	"description": "",
+	"author": "Papablack",
+	"license": "ISC",
+	"private": false,
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"bin": {
+		"gh-txt-generate": "exec/console.js"
+	},
+	"scripts": {
+		"build": "tsc",
+		"dev": "tsc --watch"
+	},
+	"dependencies": {
+		"@rws-framework/console": "^0.3.7",
+		"@types/fs-extra": "^11.0.4",
+		"chalk": "^4.1.2",
+		"fs": "^0.0.1-security",
+		"fs-extra": "^11.2.0",
+		"node-fetch": "^2.7.0",
+		"unzipper": "^0.12.1",
+		"uuid": "^10.0.0"
+	},
+	"devDependencies": {
+		"@types/node": "^20.14.8",
+		"@types/node-fetch": "^2.6.11",
+		"@types/unzipper": "^0.10.9",
+		"@types/uuid": "^10.0.0",
+		"tsc-watch": "^6.2.0",
+		"typescript": "^5.5.2"
+	}
+}

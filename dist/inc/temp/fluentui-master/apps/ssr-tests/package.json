@@ -1,0 +1,28 @@
+{
+  "name": "@fluentui/ssr-tests",
+  "version": "1.0.0",
+  "description": "Server-side rendering tests for @fluentui/react.",
+  "private": true,
+  "scripts": {
+    "type-check": "tsc -p . --noEmit --baseUrl .",
+    "build": "just-scripts build",
+    "bundle": "just-scripts bundle",
+    "test": "just-scripts test",
+    "code-style": "node -v",
+    "clean": "",
+    "just": "just-scripts"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@types/mocha": "7.0.2",
+    "mocha": "7.2.0",
+    "@microsoft/load-themed-styles": "^1.10.26",
+    "@fluentui/scripts-tasks": "*",
+    "@fluentui/scripts-webpack": "*",
+    "@fluentui/react": "*",
+    "@fluentui/public-docsite-resources": "*"
+  },
+  "dependencies": {
+    "tslib": "^2.1.0"
+  }
+}
