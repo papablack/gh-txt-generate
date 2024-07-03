@@ -16,7 +16,8 @@ const defaultArgs = {
     repoPath: '/',
     repoOwner: 'microsoft',
     repoName: 'fluentui',
-    repoBranch: 'master'
+    repoBranch: 'master',
+    ext: 'ts'
 }
 
 module.exports = async function (output) {    
@@ -34,6 +35,7 @@ module.exports = async function (output) {
     const repoBranch = args.repoString ? repoDetailsStringSplit[1] : defaultArgs.repoBranch;
 
     const repoPath = args.repoPath || defaultArgs.repoPath;
+    const ext = args.ext || defaultArgs.ext;
 
     if (!commandArgs.length) {
         throw new Error('Command args needed');
@@ -41,12 +43,14 @@ module.exports = async function (output) {
 
     console.log(chalk.blue('PARSED RUN COMMAND:'), command);
     console.log(chalk.yellow('Command args: '), args);
+    console.log(chalk.yellow('Command opts: '), commandOptions);
 
-    generateTXTFromGH(args.filePath, repoPath, {
+    await generateTXTFromGH(args.filePath, repoPath, {
         owner: repoOwner,
         repo: repoName,
-        ref: repoBranch
-    });
+        ref: repoBranch,
+        ext
+    }, commandOptions.clearTMP);
 
     return program;
 }

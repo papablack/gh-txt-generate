@@ -27,15 +27,27 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.generateTXTFromGH = generateTXTFromGH;
-const GH = __importStar(require("./inc/gh"));
+const GIT = __importStar(require("./inc/gh-git"));
+const HTTP = __importStar(require("./inc/gh-http"));
 const TXT = __importStar(require("./inc/txt"));
-const fs_1 = __importDefault(require("fs"));
-async function generateTXTFromGH(filePath, repoPath = '/', options = { owner: 'papablack', repo: 'rws-client' }) {
-    console.log({ options });
+const fs_extra_1 = __importDefault(require("fs-extra"));
+const path_1 = __importDefault(require("path"));
+async function generateTXTFromGH(filePath, repoPath = '/', options = { method: 'gh', owner: 'papablack', repo: 'rws-client', ext: 'ts' }, removeTMP = false) {
+    const method = options.method || 'gh';
     const ref = options.ref || 'master';
-    const ghReposData = await GH.downloadTSFiles(options.owner, options.repo, ref, repoPath);
+    const ext = options.ext || 'ts';
+    let ghReposData = null;
+    switch (method) {
+        case 'gh':
+            ghReposData = await GIT.checkoutTSFiles(options.owner, options.repo, ref, ext, repoPath, removeTMP);
+            break;
+        default:
+            ghReposData = await HTTP.downloadTSFiles(options.owner, options.repo, ref, ext, repoPath, removeTMP);
+            break;
+    }
     const txtFile = TXT.createSingleTxt(ghReposData);
-    fs_1.default.writeFileSync(filePath, txtFile);
+    await fs_extra_1.default.ensureDir(path_1.default.dirname(filePath));
+    fs_extra_1.default.writeFileSync(filePath, txtFile);
     console.log(`TypeScript code saved to ${filePath}`);
 }
 //# sourceMappingURL=gh-txt-generate.js.map

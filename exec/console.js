@@ -8,8 +8,6 @@ const bootstrap = RWSConsole.rwsCli.bootstrap(['run'], path.join(__dirname, 'act
 const argsMod = ['filePath'];
 const actionArgs = process.argv.slice(3);
 
-console.log(actionArgs);
-
 if(actionArgs.length > 1){
     argsMod.push('repoString');
 }
@@ -18,10 +16,21 @@ if(actionArgs.length > 2){
     argsMod.push('repoPath');
 }
 
-console.log(argsMod);
+if(actionArgs.length > 3){
+    argsMod.push('ext');
+}
 
 (async () => {
     await bootstrap.run({        
-        args: argsMod
+        args: argsMod,
+        options: [{
+            short: 'c',
+            long: 'clear-tmp',
+            desc: 'Clear TMP directory after command',
+            defaultValue: false,
+            parseArg: (value, previous) => {
+                return value === '1'
+            }
+        }]
     });
 })();

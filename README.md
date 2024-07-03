@@ -22,18 +22,20 @@ npx gh-txt-generate run ./output/fluentui_components_code.txt microsoft/fluentui
 
 ## Usage
 
-*(optional_search is "/" by default, can be RegEx)*
+*(optional_search is "/" by default, can be RegEx) - this tells which repo dir the app searches / means root dir*
+
+*(optional_ext is "ts" by default)*
 
 **npm**:
 
 ```shell
-npx gh-txt-generate run [output_txt_path] [repo_owner]/[repo_name]:[repo_branch] [optional_search]
+npx gh-txt-generate run [output_txt_path] [repo_owner]/[repo_name]:[repo_branch] [optional_search] [optional_ext]
 ```
 
 **yarn**:
 
 ```shell
-yarn gh-txt-generate run [output_txt_path] [repo_owner]/[repo_name]:[repo_branch]  [optional_search]
+yarn gh-txt-generate run [output_txt_path] [repo_owner]/[repo_name]:[repo_branch] [optional_search] [optional_ext]
 ```
 
 ## Example command

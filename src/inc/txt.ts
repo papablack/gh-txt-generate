@@ -1,5 +1,5 @@
 import fs from 'fs';
-import { GitFileContent } from './gh';
+import { GitFileContent } from './gh-fs';
 
 export function createSingleTxt(ghFilesData: GitFileContent[]){
     let concatenatedContent = '';
